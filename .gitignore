@@ -1,0 +1,6 @@
+cookies.txt
+*.py[co]
+__pycache__/
+build/
+dist/
+
