@@ -1,8 +1,15 @@
 from html.parser import HTMLParser
 import cookie_parser, sys, requests
 
-user = input("What user do you want to scrape?\nEnter the full profile-page URL please: ")
+class input_:
+    def __init__(*args):
+        return
 
+t = input_("What do you want to scrape for links today?:\n\
+        (G)allery\n\
+        (U)ser\n\
+        (I)ndividual post\n\
+        ")
 try:
     cookies = cookie_parser.parseCookieFile("cookies.txt")
 except FileNotFoundError:
@@ -39,7 +46,7 @@ class DeviantArtPostParser(DeviantArtParser):
     def run(self, tag, attrs, link):
         print(link[1])
 
-class DeviantArtUserParser(DeviantArtParser):
+class DeviantArtGalleryParser(DeviantArtParser):
     checkattr = ("data-hook", "deviation_link")
     islist = True
     def run(self, tag, attrs):
@@ -47,5 +54,22 @@ class DeviantArtUserParser(DeviantArtParser):
             parser = DeviantArtPostParser()
             parser.feed(self.get(i[1], cookies).text)
 
-parser = DeviantArtUserParser()
-parser.feed(parser.get(user, cookies).text)
+def pagination_get(user):
+    offset = 0
+    total = 0
+    limit = 60
+    more = True
+    posts = []
+    while more:
+        json = requests.get(f"https://www.deviantart.com/_napi/da-user-profile/api/gallery/contents?username={user}&offset={offset}&limit={limit}&all_folder=true").json()
+        more = json["hasMore"]
+        print(f"Scraping, {offset} results so far", file=sys.stderr)
+        offset = json["nextOffset"]
+        posts += json["results"]
+    parser = DeviantArtPostParser()
+    for itemm in posts:
+        item = itemm["deviation"]["url"]
+        parser.feed(requests.get(item, cookies=cookies).text)
+if __name__ == "__main__":
+    user = input("What user do you want to scrape?: ")
+    pagination_get(user)
