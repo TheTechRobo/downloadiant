@@ -1,4 +1,3 @@
-import re
 import requests
 
 def parseCookieFile(cookiefile):
