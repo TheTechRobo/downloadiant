@@ -1,6 +1,10 @@
 # DeviantArt scraper
 This scraper logs into DeviantArt with a Netscape-style cookies.txt, fetches a user's profile page, and displays the links so you can `wget -i` them.
 
+Please note: If a post doesn't have a download link (owners can disable downloading), a low-quality image will be
+shown instead. Additionally, a failure to log in will not raise an error. Instead, only low-quality images will be
+downloadable.
+
 It is currently possible to use this as a module, but I need to overhaul the code before I document that.
 
 ## So how do I use this?
