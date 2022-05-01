@@ -1,5 +1,3 @@
-import requests
-
 def parseCookieFile(cookiefile):
     """Parse a cookies.txt file and return a dictionary of key value pairs
     compatible with requests.
