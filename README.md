@@ -15,7 +15,9 @@ It is currently possible to use this as a module, but I need to overhaul the cod
 
 2. Put your cookies.txt in the same folder as where you're running the script from. Make sure it's named cookies.txt.  
   **NB:** With the advent of [`3acc837e3`](https://github.com/TheTechRobo/downloadiant/commit/3acc837e3af17be943bc1a55aa9880d754c641d5), you no longer need to be authenticated.
-  However, the URLs outputted will have a DeviantArt watermark.
+  However, the URLs outputted will have a DeviantArt watermark. If you want to go this route, make cookies.txt an
+  empty file.
+
 3. Run the script.
 
 4. Enter a username.
