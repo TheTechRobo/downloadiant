@@ -11,8 +11,12 @@ def parseCookieFile(cookiefile):
         for line in fp:
             if line.strip() == "":
                 continue
-            if not re.match(r'^\#', line):
+            if not line.startswith("#") or line.startswith("#HttpOnly"):
                 lineFields = line.strip().split('\t')
+                try:
+                    lineFields[6]
+                except IndexError:
+                    lineFields.append("")
                 cookies[lineFields[5]] = lineFields[6]
     return cookies
 
