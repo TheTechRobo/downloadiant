@@ -4,12 +4,12 @@ def parseCookieFile(cookiefile):
     Cf. https://stackoverflow.com/a/54659484/9654083"""
 
     cookies = {}
-    with open (cookiefile, 'r') as fp:
+    with open(cookiefile, "r") as fp:
         for line in fp:
             if line.strip() == "":
                 continue
             if not line.startswith("#") or line.startswith("#HttpOnly"):
-                lineFields = line.strip().split('\t')
+                lineFields = line.strip().split("\t")
                 try:
                     lineFields[6]
                 except IndexError:
@@ -17,4 +17,5 @@ def parseCookieFile(cookiefile):
                 cookies[lineFields[5]] = lineFields[6]
     return cookies
 
-cookies = parseCookieFile('cookies.txt')
+
+cookies = parseCookieFile("cookies.txt")
