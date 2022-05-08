@@ -1,6 +1,10 @@
 # DeviantArt scraper
 This scraper logs into DeviantArt with a Netscape-style cookies.txt, fetches a user's profile page, and displays the links so you can `wget -i` them.
 
+Please note: If a post doesn't have a download link (owners can disable downloading), a low-quality image will be
+shown instead. Additionally, a failure to log in will not raise an error. Instead, only low-quality images will be
+downloadable.
+
 It is currently possible to use this as a module, but I need to overhaul the code before I document that.
 
 ## So how do I use this?
@@ -9,7 +13,10 @@ It is currently possible to use this as a module, but I need to overhaul the cod
 
 1. Clone the repo.
 
-2. Put your cookies.txt in the same folder as where you're running the script from. Make sure it's named cookies.txt.
+2. Put your cookies.txt in the same folder as where you're running the script from. Make sure it's named cookies.txt.  
+  **NB:** With the advent of [`3acc837e3`](https://github.com/TheTechRobo/downloadiant/commit/3acc837e3af17be943bc1a55aa9880d754c641d5), you no longer need to be authenticated.
+  However, the URLs outputted will have a DeviantArt watermark. If you want to go this route, make cookies.txt an
+  empty file.
 
 3. Run the script.
 
